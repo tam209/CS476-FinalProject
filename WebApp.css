@@ -101,3 +101,53 @@ div > p1 {
   resize: both;
   overflow: auto; 
 }
+
+/* Below styling is for the search box on the homepage */
+form.search-field input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 70%;
+  background: #f1f1f1;
+
+}
+
+/* Style the submit button */
+form.search-field input[type=submit] {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.search-field button:hover {
+  background: #0b7dda;
+}
+
+/* Below styling is for the grid layout on the homepage */
+.grid-container{
+  display: grid;
+  grid-template-rows: 200px 100px 800px;
+}
+
+.inner-search-row{
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+}
+
+.inner-grid-container{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 300px 200px 200px;
+}
+.inner-grid-container > div {
+  text-align: center;
+  font-size: 20px;
+}
+
