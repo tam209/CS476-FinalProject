@@ -138,7 +138,7 @@ form.search-field button:hover {
 
 .inner-search-row{
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: 300px 900px 300px;
 }
 
 .inner-grid-container{
