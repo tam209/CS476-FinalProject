@@ -232,3 +232,27 @@ form.contact-form button {
   background-color: black;
   color: white;
 }
+
+/*Below styling for profile page*/
+.profile-info{
+  display: grid;
+  grid-template-areas: 
+  'avatar avatar userInfo userInfo userInfo'
+  'avatar avatar userInfo userInfo userInfo'
+}
+
+.user-avatar {
+  display: block;
+  text-align: center;
+}
+
+.user-info h3, p3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Saved-books-header {
+  font-size: 30px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
