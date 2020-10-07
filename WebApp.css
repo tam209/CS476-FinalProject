@@ -16,8 +16,6 @@ body {
   font-size: 28px;
 }
 
-
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -136,9 +134,14 @@ form.search-field button:hover {
   grid-template-rows: 200px 100px 800px;
 }
 
+/*Oct 6: added styling to center the search box using the .inner-search-row & .search classes */
 .inner-search-row{
-  display: grid;
-  grid-template-columns: 300px 900px 300px;
+    display: grid;
+	grid-template-columns: 10% 80% 10%;
+}
+
+.search{
+	text-align: center;
 }
 
 .inner-grid-container{
@@ -173,6 +176,7 @@ form.search-field button:hover {
   transition-duration: 0.4s;
   cursor: pointer;
 }
+
 .button:hover {
   background-color: #555555;
   color: white;
