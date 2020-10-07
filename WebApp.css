@@ -10,6 +10,7 @@
 h1 {
   text-align: center;
   color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -25,6 +26,7 @@ ul {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 li {
@@ -179,5 +181,37 @@ form.search-field button:hover {
 
 .button:hover {
   background-color: #555555;
+  color: white;
+}
+
+/* Below styling is for contact page */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+form.contact-form input[type=text], textarea {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  width: 50%;
+}
+
+form.contact-form button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.contact-submit:hover{
+  background-color: black;
   color: white;
 }
