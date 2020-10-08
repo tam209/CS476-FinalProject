@@ -86,6 +86,7 @@ li a:hover {
   left: 50%;
   resize: both;
   overflow: auto; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .child{
@@ -96,6 +97,26 @@ li a:hover {
 div > p1 {
   text-align: center;
   font-size: 15px;
+}
+
+/* styling for the buttons on the login and create an account page*/
+.button-style
+{
+  border: none;
+  color: white;
+  padding: 5px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  background-color: #43658B;
+}
+.button-style:hover
+{
+  background-color: black;
+  color: white;
 }
 
 /* Below styling is for create account page */
@@ -117,6 +138,7 @@ div > p1 {
   left: 50%;
   resize: both;
   overflow: auto; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Below styling is for the search box on the homepage */
@@ -226,6 +248,7 @@ form.contact-form button {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  background-color: #43658B;
 }
 
 .contact-submit:hover{
