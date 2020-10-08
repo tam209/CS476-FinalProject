@@ -99,6 +99,7 @@ div > p1 {
   font-size: 15px;
 }
 
+
 /* styling for the buttons on the login and create an account page*/
 .button-style
 {
@@ -179,8 +180,6 @@ form.search-field button:hover {
 .inner-search-row{
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  position: relative;
-  top: -60%;
 }
 
 .search{
@@ -191,10 +190,18 @@ form.search-field button:hover {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-template-rows: 300px 200px 200px;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
 .inner-grid-container > div {
   text-align: center;
   font-size: 20px;
+}
+
+/* used to space each individual item in the book listing*/
+.book-listing-spacing
+{
+  margin: 8px;
 }
 
 /* Below styling is for bookinfo page */
