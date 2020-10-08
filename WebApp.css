@@ -177,8 +177,10 @@ form.search-field button:hover {
 
 /*Oct 6: added styling to center the search box using the .inner-search-row & .search classes */
 .inner-search-row{
-    display: grid;
-	grid-template-columns: 10% 80% 10%;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  position: relative;
+  top: -60%;
 }
 
 .search{
