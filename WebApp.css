@@ -174,7 +174,7 @@ form.search-field button:hover {
 /* Below styling is for the grid layout on the homepage */
 .grid-container{
   display: grid;
-  grid-template-rows: 200px 100px 800px;
+  grid-template-rows: 150px 200px 800px;
 }
 
 /*Oct 6: added styling to center the search box using the .inner-search-row & .search classes */
@@ -184,7 +184,7 @@ form.search-field button:hover {
 }
 
 .search{
-	text-align: center;
+  text-align: center;
 }
 
 .inner-grid-container{
