@@ -5,6 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="WebApp.css" />
 
 	<meta charset="UTF-8">
+	
+	<script type="text/javascript" src="login_validate.js"></script> 
 
 	<!-- This style tag is for the background on the login.html page -->
 	<style>
@@ -14,7 +16,13 @@
 		background-repeat: no-repeat;
 		background-attachment: fixed; 
   		background-size: cover;
-	}		
+	}	
+		
+	.err_msg {
+		color:red;
+		font-size: 13px;
+	}
+		
 	</style>
 
 </head>
@@ -27,10 +35,12 @@
 
 	<div class="login-form-box">
 		<div class="child">
-			<form>
+			<form id="Login" method="post">
 				<table>
+					<tr><td></td><td><label id="u_msg" class="err_msg"></label></td></tr>
 					<tr><td><label for="username">Username:</label></td>
 					<td><input type="text" id="username" name="username"></td></tr>
+					<tr><td></td><td><label id="pwd_msg" class="err_msg"></label></td></tr>
 					<tr><td><label for="pwd">Password:</label></td>
 					<td><input type="text" id="pwd" name="pwd"></td></tr>
                 		</table>
@@ -43,6 +53,8 @@
 		</div>
 	</div>
 
+<script type = "text/javascript"  src = "login_validate_r.js" ></script>
+	
 </body>
 
 </html>
