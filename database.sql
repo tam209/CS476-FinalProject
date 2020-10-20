@@ -12,7 +12,6 @@ username VARCHAR(100),
 password VARCHAR(100),
 dob DATE,
 pic VARCHAR(200),
-logged_in BOOLEAN, 
 PRIMARY KEY(user_id) );
 
 CREATE TABLE SavedBooks (
@@ -27,15 +26,6 @@ FOREIGN KEY (user_id) REFERENCES Users(user_id) );
 
 /* 
 The following code is just for reference and may be used within the other files later
-
--- Changing login/logout status
-UPDATE Users
-SET logged_in = 1
-WHERE first_name = "name";
-
-UPDATE Users
-SET logged_in = 0
-WHERE first_name = "name";
 
 -- Insert a book into saved books
 INSERT INTO SavedBooks
