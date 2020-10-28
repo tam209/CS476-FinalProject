@@ -83,7 +83,7 @@ else
 	<ul>
   		<li><a class="active" href="#home">Home</a></li>
   		<!--<li><a href="profile.html">Profile</a></li>-->
-  		<li><a href="contact.html">Contact</a></li>
+  		<li><a href="contact.php">Contact</a></li>
   		<!--<li style="float:right"><button class="logout-button">Log out</button></li>-->
   		<li style="float:right"><a href="createAccount.php">Sign up</a></li>
   		<li style="float:right"><a href="login.php">Login</a></li>
