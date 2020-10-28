@@ -130,7 +130,7 @@ if (isset($_POST["submitted"]) && $_POST["submitted"]) {
 		$r_insert = $db->query($q_insert);
 		
 		if ($r_insert === true) {
-			header("Location: homepage.html");
+			header("Location: homepage.php");
 			$db->close();
 			exit();
 		}
@@ -213,7 +213,7 @@ if (isset($_POST["submitted"]) && $_POST["submitted"]) {
 				<input class="button-style" type="reset" name="reset" value="Reset">
 			</form>
 
-			<p1> Go <a href="login.html">Back</a> <br>
+			<p1> Go <a href="login.php">Back</a> <br>
 			</p1>
 		</div>
 	</div>

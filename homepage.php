@@ -22,7 +22,7 @@ if (isset($_SESSION["username"]))
 
 	<ul>
   		<li><a class="active" href="#home">Home</a></li>
-  		<li><a href="profile.html">Profile</a></li>
+  		<li><a href="profile.php">Profile</a></li>
   		<li><a href="contact.html">Contact</a></li>
   		<li style="float:right"><!--<button class="logout-button" action="logout.php">Log out</button>--><a href="logout.php"> Log out</a></li>
 	</ul>
