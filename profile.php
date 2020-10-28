@@ -17,7 +17,7 @@
   		<li><a href="homepage.html">Home</a></li>
   		<li><a class="active" href="profile.html">Profile</a></li>
   		<li><a href="contact.html">Contact</a></li>
-		<li style="float:right"><button class="logout-button">Log out</button></li>
+          <li style="float:right"><!--<button class="logout-button" action="logout.php">Log out</button>--><a href="logout.php"> Log out</a></li>
 	</ul>
 
 	<div class="profile-info">
