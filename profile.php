@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+if (isset($_SESSION["username"]))
+{
+
+	$username = $_SESSION["username"];
+
+	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
+	if ($db->connect_error)
+	{
+		die ("Connection failed: " . $db->connect_error);
+	}
+
+	$q = "SELECT first_name, last_name, email FROM Users WHERE username = '$username'";
+
+	$r = $db->query($q);
+	$row = $r->fetch_assoc();
+	
+	$fname = $row["first_name"];
+	$lname = $row["last_name"];
+	$email = $row["email"];
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +51,11 @@
 			<img src="sunflower.jpg" alt="sunflower" style="width:200px">
 		</div>
 		<div class="user-info">
-			<h3> Welcome, username! </h3>
-			<p3> User's first name and last name</p3> <br>
-			<p3> User's email</p3> <br>
+			<?php
+			echo "<h3> Welcome, ".$username."! </h3>
+			<p3>".$fname." ".$lname."</p3> <br>
+			<p3>".$email."</p3><br>";
+			?>
 		</div>
 	</div>
 
@@ -50,3 +78,11 @@
 </body>
 
 </html>
+
+<?php
+}
+else
+{
+	echo "Error Opening Profile Page";
+}
+?>
