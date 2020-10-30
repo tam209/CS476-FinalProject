@@ -51,7 +51,7 @@ if (isset($_SESSION["username"]))
 	<div class="profile-info">
   		<div class="user-avatar"> 
   			<br> <!-- using <br> to give the space between nav bar and the image -->
-			<img src="<?php echo $img_src; ?>" alt="User's Avatar" style="width:200px">
+			<img src="<?php echo $avatar; ?>" alt="User's Avatar" style="width:200px">
 			
 		</div>
 		<div class="user-info">
