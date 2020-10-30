@@ -20,9 +20,8 @@ if (isset($_SESSION["username"]))
 	$fname = $row["first_name"];
 	$lname = $row["last_name"];
 	$email = $row["email"];
+	$db->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
