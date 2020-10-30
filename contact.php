@@ -43,7 +43,7 @@ if (isset($_SESSION["username"]))
 		<div class="contact-info">
 			<h2>Contact us </h2>
 
-			<form class="contact-form" id="contactForm" method="post">
+			<form action="mail.php" class="contact-form" id="contactForm" method="post">
 				<p><label id="e_msg" class="err_msg"></label></p>
 				<input type="text" id="email" placeholder="Enter email" name="email">
 				<p><label id="sub_msg" class="err_msg"></label></p>
@@ -53,7 +53,6 @@ if (isset($_SESSION["username"]))
 				<p><label id="charleft_msg" class="err_msg"></label></p>
 				<button class="contact-submit"> Submit </button>	
 			</form>
-
 		</div>
 	</div>
 
@@ -109,7 +108,7 @@ else
 		<div class="contact-info">
 			<h2>Contact us </h2>
 
-			<form class="contact-form" id="contactForm" method="post">
+			<form action="mail.php" class="contact-form" id="contactForm" method="post">
 				<p><label id="e_msg" class="err_msg"></label></p>
 				<input type="text" id="email" placeholder="Enter email" name="email">
 				<p><label id="sub_msg" class="err_msg"></label></p>
@@ -119,7 +118,6 @@ else
 				<p><label id="charleft_msg" class="err_msg"></label></p>
 				<button class="contact-submit"> Submit </button>	
 			</form>
-
 		</div>
 	</div>
 
