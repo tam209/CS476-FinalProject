@@ -1,6 +1,6 @@
 <?php
 		
-	$recipient = "tori.sambrook@gmail.com";
+	$recipient = "youremail@mail.com";
 	$email = $_POST["email"];
 	$subject = $_POST["subject"];
 	$body = $_POST["email-body"];
