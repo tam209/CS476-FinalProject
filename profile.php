@@ -1,25 +1,29 @@
 <?php
 session_start();
 
+// Check if the session variable is still set, otherwise print error message
 if (isset($_SESSION["username"]))
 {
-
 	$username = $_SESSION["username"];
-
+	
+	// Open a new connection to mysql database and check that it connected properly 
 	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
 	if ($db->connect_error)
 	{
 		die ("Connection failed: " . $db->connect_error);
 	}
-
-	$q = "SELECT first_name, last_name, email FROM Users WHERE username = '$username'";
+	
+	// Retrive the logged in user's first name, last name, and email from database
+	$q = "SELECT first_name, last_name, email, pic FROM Users WHERE username = '$username'";
 
 	$r = $db->query($q);
 	$row = $r->fetch_assoc();
 	
+	// Store the users information in variables
 	$fname = $row["first_name"];
 	$lname = $row["last_name"];
 	$email = $row["email"];
+	$avatar = $row["pic"];
 	$db->close();
 ?>
 
@@ -47,9 +51,11 @@ if (isset($_SESSION["username"]))
 	<div class="profile-info">
   		<div class="user-avatar"> 
   			<br> <!-- using <br> to give the space between nav bar and the image -->
-			<img src="sunflower.jpg" alt="sunflower" style="width:200px">
+			<img src="<?php echo $img_src; ?>" alt="User's Avatar" style="width:200px">
+			
 		</div>
 		<div class="user-info">
+			<!-- using php to output the users information -->
 			<?php
 			echo "<h3> Welcome, ".$username."! </h3>
 			<p3>".$fname." ".$lname."</p3> <br>
