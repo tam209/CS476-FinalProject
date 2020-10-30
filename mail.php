@@ -8,7 +8,7 @@
 
 	if(mail($recipient, $subject, $body, $header))
 	{
-		echo "Message sent succesfully.";
+		echo "Message sent successfully.";
 	}
 	else
 	{
