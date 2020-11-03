@@ -1,8 +1,25 @@
 <?php
 session_start();
 
-if (isset($_SESSION["username"]))
+if (isset($_GET["submitted"]) && $_GET["submitted"])	
 {
+	$search = $_GET["search"];
+	
+	// Open a new connection to mysql database and check that it connected properly 
+	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
+	if ($db->connect_error)
+	{
+		die ("Connection failed: " . $db->connect_error);
+	}
+
+	// Retrive the logged in user's first name, last name, and email from database
+	$q = "SELECT title, author, pic FROM Books WHERE (title LIKE '%$search%') OR (author LIKE '%$search%') OR (genre LIKE '%$search%')";
+
+	$r = $db->query($q);
+
+	$db->close();
+	
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +36,12 @@ if (isset($_SESSION["username"]))
 	<div class="header-img">
 		<h1> BookExplorer </h1>
 	</div>
+
+	<!--Moved the php for the nav bar here to remove the html code duplication-->
+	<?php
+	if (isset($_SESSION["username"]))
+	{
+	?>
 
 	<ul>
   		<li><a class="active" href="#home">Home</a></li>
@@ -27,58 +50,11 @@ if (isset($_SESSION["username"]))
   		<li style="float:right"><!--<button class="logout-button" action="logout.php">Log out</button>--><a href="logout.php"> Log out</a></li>
 	</ul>
 
-	<div class="grid-container">
-		<div class="empty">  </div> <!-- this is here to create the space between the search bar and the nav bar --> 
-		<div class="inner-search-row">  
-			<div class="empty"></div>   <!-- this is here to create space and try to center the search box --> 
-			<div class="search">
-				<form class="search-field">
-  					<input type="text" placeholder="Search.." name="search">
-  					<input type="submit" value="Search">
-				</form>
-			</div>
-		</div>
-	    
-
-		<div class="inner-grid-container"> 
-			<div class="item1"> 
-			<h3 class="book-listing-spacing">Title1  <br></h3>
-			<h4 class="book-listing-spacing">Author <br></h4>
-			<img class="book-listing-spacing" src="harrypotter.jpg" alt="HarryPotter" style="width:100px"> <br>
-			<a class="book-listing-spacing" href="bookinfo.html"> More Info </a><br>
-			</div>
-			<div class="item2"> Book2 </div>
-			<div class="item3"> Book3 </div>
-			<div class="item4"> Book4 </div>
-			<div class="item5"> Book5 </div>
-		</div> 
-	</div>
-
-</body>
-
-</html>
-
-<?php
-}
-
-else
-{
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BookExplorer: Search & Save Books</title>
-	<link rel="stylesheet" type="text/css" href="WebApp.css" />
-
-	<meta charset="UTF-8">
-
-</head>
-
-<body>
-	<div class="header-img">
-		<h1> BookExplorer </h1>
-	</div>
+	<?php
+	}
+	else
+	{
+	?>
 
 	<ul>
   		<li><a class="active" href="#home">Home</a></li>
@@ -89,12 +65,17 @@ else
   		<li style="float:right"><a href="login.php">Login</a></li>
 	</ul>
 
+	<?php
+	}
+	?>
+
 	<div class="grid-container">
 		<div class="empty">  </div> <!-- this is here to create the space between the search bar and the nav bar --> 
 		<div class="inner-search-row">  
 			<div class="empty"></div>   <!-- this is here to create space and try to center the search box --> 
 			<div class="search">
 				<form class="search-field">
+					<input type="hidden" name="submitted" value="1" />
   					<input type="text" placeholder="Search.." name="search">
   					<input type="submit" value="Search">
 				</form>
@@ -102,24 +83,24 @@ else
 		</div>
 	    
 
-		<div class="inner-grid-container"> 
-			<div class="item1"> 
-			<h3 class="book-listing-spacing">Title1  <br></h3>
-			<h4 class="book-listing-spacing">Author <br></h4>
-			<img class="book-listing-spacing" src="harrypotter.jpg" alt="HarryPotter" style="width:100px"> <br>
-			<a class="book-listing-spacing" href="bookinfo.html"> More Info </a><br>
-			</div>
-			<div class="item2"> Book2 </div>
-			<div class="item3"> Book3 </div>
-			<div class="item4"> Book4 </div>
-			<div class="item5"> Book5 </div>
+		<div class="inner-grid-container"> 			
+			<!-- The following code will display book results -->
+			<?php 
+			while($row = $r->fetch_object())
+			{	
+				// going to add styling for title and image link
+				echo "<div class=\"book-search-result\">";
+				echo "<a href=\"bookinfo.php\"><h3 class=\"book-listing-spacing\">$row->title<br></h3></a>";
+				echo "<h4 class=\"book-listing-spacing\">$row->author<br></h4>";
+				echo "<a href=\"bookinfo.php\"><img class=\"book-listing-spacing\" src=\"$row->pic\" alt=\"$row->title\" style=\"width:100px\"><br><a>";
+				echo "</div>";
+			}
+			$result -> free_result();
+			?>
+			
 		</div> 
 	</div>
 
 </body>
 
 </html>
-
-<?php
-}
-?>
