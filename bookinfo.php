@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BookExplorer: Book Information</title>
+	<link rel="stylesheet" type="text/css" href="WebApp.css" />
+
+	<meta charset="UTF-8">
+
+</head>
+
+<body>
+	<div class="header-img">
+		<h1> BookExplorer </h1>
+	</div>
+
+	<ul>
+  		<li><a href="homepage.html">Home</a></li>
+  		<li><a href="profile.html">Profile</a></li>
+  		<li><a href="contact.html">Contact</a></li>
+		<li style="float:right"><button class="logout-button">Log out</button></li>
+	</ul>
+	
+	<div class="book-info-placement">
+		<h2>Book Info Page</h2>
+
+		<div class="book-grid">
+			<div class="bookcover"> <img src="harrypotter.jpg" alt="HarryPotter"> </div>
+			<div class="bookinfo">
+				<h3> Title </h3><br>
+				<h4> Author </h3>
+				<button class="button">Save</button>
+				<button class="button">Email</button>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
