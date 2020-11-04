@@ -84,11 +84,12 @@
 		if (isset($_SESSION["username"]))
 		{
 			// NOTE: still need to add the php for the save and email buttons
-			echo "<div class=\"bookcover\"> <img src=\"$pic\" alt=\"HarryPotter\"> </div>";
+			echo "<div class=\"bookcover\"> <img src=\"$pic\" alt=\"HarryPotter\" width = \"90%\"> </div>";
 			echo "<div class=\"bookinfo\">";
-				echo "<h3>$title</h3><br>
-				<h4>$author</h3><br>
-				<p>Find out more at <a href=\"$link\" target=\"_blank\">GoodReads.com</a></p>
+				echo "<h3>$title</h3>
+				<h4>Author: $author</h4>
+				<h4>Genre: $genre</h4>
+				<p>Find out more at <a href=\"$link\" target=\"_blank\">GoodReads.com</a></p><br>
 				<button class=\"button\">Save</button>
 				<button class=\"button\">Email</button>";
 			echo"</div>";
@@ -96,7 +97,7 @@
 		else
 		{
 			// if the user is not logged in, prompt them to log in to save a book
-			echo "<div class=\"bookcover\"> <img src=\"$pic\" alt=\"HarryPotter\"> </div>";
+			echo "<div class=\"bookcover\"> <img src=\"$pic\" alt=\"HarryPotter\" width = \"90%\"> </div>";			
 			echo "<div class=\"bookinfo\">";
 				echo "<h3>$title</h3>
 				<h4>Author: $author</h4>
