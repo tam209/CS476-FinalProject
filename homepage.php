@@ -12,13 +12,12 @@ if (isset($_GET["submitted"]) && $_GET["submitted"])
 		die ("Connection failed: " . $db->connect_error);
 	}
 
-	// Retrive the logged in user's first name, last name, and email from database
-	$q = "SELECT title, author, pic FROM Books WHERE (title LIKE '%$search%') OR (author LIKE '%$search%') OR (genre LIKE '%$search%')";
+	// Retrive the book's book_id, title, author, and picture from the database based on the search
+	$q = "SELECT book_id, title, author, pic FROM Books WHERE (title LIKE '%$search%') OR (author LIKE '%$search%') OR (genre LIKE '%$search%')";
 
 	$r = $db->query($q);
 
 	$db->close();
-	
 }
 ?>
 
@@ -88,16 +87,16 @@ if (isset($_GET["submitted"]) && $_GET["submitted"])
 			<?php 
 			while($row = $r->fetch_object())
 			{	
-				// going to add styling for title and image link
-				echo "<div class=\"book-search-result\">";
-				echo "<a href=\"bookinfo.php\"><h3 class=\"book-listing-spacing\">$row->title<br></h3></a>";
-				echo "<h4 class=\"book-listing-spacing\">$row->author<br></h4>";
-				echo "<a href=\"bookinfo.php\"><img class=\"book-listing-spacing\" src=\"$row->pic\" alt=\"$row->title\" style=\"width:100px\"><br><a>";
+				// Decreased the size of the title and author to avoid results overlapping
+				echo "<div class=\"book-search-result\">
+					<h4 class=\"book-listing-spacing\">$row->title<br></h4>
+					<h5 class=\"book-listing-spacing\">$row->author<br></h5>
+					<a href=\"bookinfo.php?id=$row->book_id\"><img class=\"book-listing-spacing\" src=\"$row->pic\" alt=\"$row->title\" style=\"width:100px\"></a><br>
+					<a class=\"book-listing-spacing\" href=\"bookinfo.php?id=$row->book_id\"> More Info </a><br>";
 				echo "</div>";
 			}
 			$result -> free_result();
 			?>
-			
 		</div> 
 	</div>
 
