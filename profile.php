@@ -30,6 +30,7 @@ if (isset($_SESSION["username"]))
 	$q2 = "SELECT Books.book_id, Books.title, Books.author, Books.pic 
 			FROM Books RIGHT JOIN SavedBooks ON Books.book_id = SavedBooks.book_id
 			LEFT JOIN Users ON SavedBooks.user_id = Users.user_id
+			WHERE Users.user_id = '$user_id'
 			ORDER BY Books.title ASC";
 	$r2 = $db->query($q2);
 
