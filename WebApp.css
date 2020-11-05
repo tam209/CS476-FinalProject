@@ -11,6 +11,7 @@ h1 {
   text-align: center;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
 }
 
 body {
@@ -185,6 +186,7 @@ form.search-field button:hover {
 
 .search{
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .inner-grid-container{
@@ -203,6 +205,16 @@ form.search-field button:hover {
 .book-listing-spacing
 {
   margin: 8px;
+}
+
+img.book-listing-spacing
+{
+  box-shadow: 0px 5px 10px #2e2d2d;
+}
+
+img.book-listing-spacing:hover
+{
+  transform:scale(0.95);
 }
 
 /* Below styling is for bookinfo page */
@@ -239,6 +251,28 @@ form.search-field button:hover {
   margin: 8px;
   padding: 5px 35px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*styling for the copy link box*/
+.share-link
+{
+  background-color: #43658B;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+/*used to style to promts on the bookinfo page*/
+.button-msg
+{
+	font-size: 20px;
+	padding: 5px;
 }
 
 /* Below styling is for contact page */
