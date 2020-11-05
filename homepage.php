@@ -13,7 +13,7 @@ if (isset($_GET["submitted"]) && $_GET["submitted"])
 	}
 
 	// Retrive the book's book_id, title, author, and picture from the database based on the search
-	$q = "SELECT book_id, title, author, pic FROM Books WHERE (title LIKE '%$search%') OR (author LIKE '%$search%') OR (genre LIKE '%$search%')";
+	$q = "SELECT book_id, title, author, pic FROM Books WHERE (title LIKE '%$search%') OR (author LIKE '%$search%') OR (genre LIKE '%$search%') ORDER BY title ASC";
 
 	$r = $db->query($q);
 
@@ -95,7 +95,7 @@ if (isset($_GET["submitted"]) && $_GET["submitted"])
 					<a class=\"book-listing-spacing\" href=\"bookinfo.php?id=$row->book_id\"> More Info </a><br>";
 				echo "</div>";
 			}
-			$result -> free_result();
+			$r -> free_result();
 			?>
 		</div> 
 	</div>
