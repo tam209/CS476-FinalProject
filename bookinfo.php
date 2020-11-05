@@ -67,9 +67,8 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 <head>
 	<title>BookExplorer: Book Information</title>
 	<link rel="stylesheet" type="text/css" href="WebApp.css" />
-
+	
 	<meta charset="UTF-8">
-
 </head>
 
 <body>
@@ -97,18 +96,22 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 				echo "<h3>$title</h3>
 				<h4>Author: $author</h4>
 				<h4>Genre: $genre</h4>
-				<p>Find out more at <a href=\"$link\" target=\"_blank\">GoodReads.com</a></p><br>";
+				<p class=\"button-msg\"><b>Find out more about this book by clicking <a href=\"$link\" target=\"_blank\">here</a>.</b></p><br>";
 				echo "<form method=\"post\">
 					<input type=\"submit\" class=\"button\" name=\"save\" value=\"$button\"/>
 					<input type=\"submit\" class=\"button\" name=\"share\" value=\"Share\"/>
 				</form>";
+				if(isset($_POST["share"]))
+				{
+					// NOTE: change the link according to who's server is being used
+					echo "<div class=\"button-msg\"><br>Copy the link below to share!</div>
+					<div class=\"share-link\">www2.cs.uregina.ca/~tls665/BookExplorer/bookinfo.php?id=$book_id</div>";
+				}
 			echo"</div>";
 		?>
 		</div>
 	</div>
-
 </body>
-
 </html>
 
 <?php
@@ -148,7 +151,6 @@ else if(isset($_GET['id']))
 	<link rel="stylesheet" type="text/css" href="WebApp.css" />
 
 	<meta charset="UTF-8">
-
 </head>
 
 <body>
@@ -177,10 +179,19 @@ else if(isset($_GET['id']))
 				echo "<h3>$title</h3>
 				<h4>Author: $author</h4>
 				<h4>Genre: $genre</h4>
-				<p>Find out more at <a href=\"$link\" target=\"_blank\">GoodReads.com</a></p><br>
-				<p>Want to save this book to view later? Please
-				<a href = \"login.php\">Login<a> or <a href=\"createAccount.php\">Create an account</a>.</p>
-				<button class=\"button\">Email</button>";
+				<p class=\"button-msg\"><b>Find out more about this book by clicking <a href=\"$link\" target=\"_blank\">here</a>.</b></p><br>";
+				echo "<form method=\"post\">
+					<input type=\"submit\" class=\"button\" name=\"share\" value=\"Share\"/>";
+					echo "<div class=\"button-msg\">Want to save this book to view later? Please
+					<a href = \"login.php\">Login<a> or <a href=\"createAccount.php\">Create an account</a>.</div>";
+				echo "</form>";
+
+				if(isset($_POST["share"]))
+				{
+					// NOTE: change the link according to who's server is being used
+					echo "<div class=\"button-msg\"><br>Copy the link below to share!</div>
+					<div class=\"share-link\">www2.cs.uregina.ca/~tls665/BookExplorer/bookinfo.php?id=$book_id</div>";
+				}
 			echo"</div>";
 		?>
 		</div>
