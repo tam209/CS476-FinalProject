@@ -57,7 +57,6 @@ if (isset($_SESSION["username"]))
 	<link rel="stylesheet" type="text/css" href="WebApp.css" />
 
 	<meta charset="UTF-8">
-
 </head>
 
 <body>
@@ -100,7 +99,7 @@ if (isset($_SESSION["username"]))
 				<h5 class=\"book-listing-spacing\">$row2->author<br></h5>
 				<a href=\"bookinfo.php?id=$row2->book_id\"><img class=\"book-listing-spacing\" src=\"$row2->pic\" alt=\"$row2->title\" style=\"width:80px\"></a><br>
 				<a class=\"book-listing-spacing\" href=\"bookinfo.php?id=$row2->book_id\"> More Info </a><br>";
-			echo "<form method=\"post\" action=\"profile.php\">
+			echo "<form method=\"post\">
 				<input type=\"submit\" class=\"remove-button\" name=\"$row2->book_id\" value=\"Remove Book\"/>
 			</form>";
 			echo "</div>";
