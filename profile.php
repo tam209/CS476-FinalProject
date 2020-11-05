@@ -14,16 +14,39 @@ if (isset($_SESSION["username"]))
 	}
 	
 	// Retrive the logged in user's first name, last name, and email from database
-	$q = "SELECT first_name, last_name, email, pic FROM Users WHERE username = '$username'";
-
-	$r = $db->query($q);
-	$row = $r->fetch_assoc();
+	$q1 = "SELECT user_id, first_name, last_name, email, pic FROM Users WHERE username = '$username'";
+	$r1 = $db->query($q1);
+	$row = $r1->fetch_assoc();
 	
 	// Store the users information in variables
+	$user_id = $row["user_id"];
 	$fname = $row["first_name"];
 	$lname = $row["last_name"];
 	$email = $row["email"];
 	$avatar = $row["pic"];
+
+	// Retrieve user's saved books
+	$q2 = "SELECT Books.book_id, Books.title, Books.author, Books.pic 
+			FROM Books RIGHT JOIN SavedBooks ON Books.book_id = SavedBooks.book_id
+			LEFT JOIN Users ON SavedBooks.user_id = Users.user_id
+			ORDER BY Books.title ASC";
+	$r2 = $db->query($q2);
+
+	// get all the book_id's and check if one of them was pressed
+	$q3 = "Select book_id FROM SavedBooks WHERE user_id = '$user_id'";
+	$r3 = $db->query($q3);
+	while($row3 = $r3->fetch_object())
+	{
+		// if the book matching the book_id is the one that is supposed to be removed
+		if(isset($_POST["$row3->book_id"]))
+		{
+			$q4 = "DELETE FROM SavedBooks WHERE book_id = '$row3->book_id'";
+			$r4 = $db->query($q4);
+			break;
+		}
+	}
+	$r3 -> free_result();
+	
 	$db->close();
 ?>
 
@@ -66,18 +89,25 @@ if (isset($_SESSION["username"]))
 
 	<h2 class="Saved-books-header"> Your Saved Books </h2>
 
-	<div class="inner-grid-container"> 
-		<div class="item1"> 
-			<h3 class="book-listing-spacing">Title1  <br></h3>
-			<h4 class="book-listing-spacing">Author <br></h4>
-			<img class="book-listing-spacing" src="harrypotter.jpg" alt="HarryPotter" style="width:80px"> <br>
-			<a class="book-listing-spacing" href="bookinfo.html"> More Info </a><br>
-		<button class="remove-button">Remove book</button>
-		</div>
-		<div class="item2"> Book2 </div>
-		<div class="item3"> Book3 </div>
-		<div class="item4"> Book4 </div>
-		<div class="item5"> Book5 </div>
+	<div class="inner-grid-container"> 			
+		<!-- The following code will display book results -->
+		<?php 
+		while($row2 = $r2->fetch_object())
+		{	
+			// Decreased the size of the title and author to avoid results overlapping
+			echo "<div class=\"book-search-result\">
+				<h4 class=\"book-listing-spacing\">$row2->title<br></h4>
+				<h5 class=\"book-listing-spacing\">$row2->author<br></h5>
+				<a href=\"bookinfo.php?id=$row2->book_id\"><img class=\"book-listing-spacing\" src=\"$row2->pic\" alt=\"$row2->title\" style=\"width:80px\"></a><br>
+				<a class=\"book-listing-spacing\" href=\"bookinfo.php?id=$row2->book_id\"> More Info </a><br>";
+			echo "<form method=\"post\" action=\"profile.php\">
+				<input type=\"submit\" class=\"remove-button\" name=\"$row2->book_id\" value=\"Remove Book\"/>
+			</form>";
+			echo "</div>";
+		}
+		$r2 -> free_result();
+		?>
+
 	</div> 
 
 </body>
