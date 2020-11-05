@@ -5,6 +5,7 @@ session_start();
 if (isset($_SESSION["username"]))
 {
 	$username = $_SESSION["username"];
+	$validate = false;
 	
 	// Open a new connection to mysql database and check that it connected properly 
 	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
@@ -42,11 +43,17 @@ if (isset($_SESSION["username"]))
 		{
 			$q4 = "DELETE FROM SavedBooks WHERE book_id = '$row3->book_id'";
 			$r4 = $db->query($q4);
+			$validate = true;	
 			break;
 		}
 	}
 	$r3 -> free_result();
 	
+	if($validate == true)
+	{
+		header("Location: profile.php");
+		exit();
+	}
 	$db->close();
 ?>
 

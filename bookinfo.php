@@ -5,6 +5,7 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 {
 	$username = $_SESSION["username"];
 	$book_id = $_GET['id'];
+	$validate = false;
 
 	//create a variable to store the Save button display
 	$button = "Save";
@@ -52,11 +53,13 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 			$q4 = "INSERT INTO SavedBooks (user_id, book_id) VALUES ('$user_id', '$book_id')";
 			$r4 = $db->query($q4);
 			$button = "Saved!";
-			if($r4 == false)
-			{
-				echo "An error occured with saving the book.";
-			}
+			$validate = true;
 		}
+	}
+	if($validate == true)
+	{
+		header("Location: bookinfo.php?id=$book_id");
+		exit();
 	}
 
 	$db->close();
