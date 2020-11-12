@@ -136,6 +136,83 @@ VALUES
 "Middle Grade & Children's", "books/thehiddenoracle.jpg", "https://www.goodreads.com/book/show/26252859-the-hidden-oracle?from_choice=true"
 );
 
+/* Adding 10 more books */
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("Big Summer", "Jennifer Weiner",
+"Fiction", "books/bigsummer.jpg", "https://www.goodreads.com/book/show/52755548-big-summer?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("Dear Edward", "Ann Napolitano",
+"Fiction", "books/dearedward.jpg", "https://www.goodreads.com/book/show/45294613-dear-edward?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("A Very Punchable Face", "Colin Jost",
+"Humor", "books/averypunchableface.jpg", "https://www.goodreads.com/book/show/48989372-a-very-punchable-face?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("Wow, No Thank You.", "Samantha Irby",
+"Humor", "books/wownothankyou.jpg", "https://www.goodreads.com/book/show/49960031-wow-no-thank-you?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("Don't Overthink It", "Anne Bogel",
+"Nonfiction", "books/dontoverthinkit.jpg", "https://www.goodreads.com/book/show/52686687-don-t-overthink-it?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("The House of Kennedy", "James Patterson",
+"History & Biography", "books/thehouseofkennedy.jpg", "https://www.goodreads.com/book/show/51285366-the-house-of-kennedy?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("Eat a Peach", "David Chang",
+"Food & Cookbooks", "books/eatapeach.jpg", "https://www.goodreads.com/book/show/51700803-eat-a-peach?from_choice=true"
+);
+
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("The Serious Goose", "Jimmy Kimmel",
+"Picture Books", "books/theseriousgoose.jpg", "https://www.goodreads.com/book/show/49216540-the-serious-goose?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("The Switch", "Beth O'Leary",
+"Romance", "books/theswitch.jpg", "https://www.goodreads.com/book/show/48842183-the-switch?from_choice=true"
+);
+
+INSERT INTO Books 
+(title, author, genre, pic, link)
+VALUES
+("In Five Years", "Rebecca Serle",
+"Romance", "books/infiveyears.jpg", "https://www.goodreads.com/book/show/50093704-in-five-years?from_choice=true"
+);
+
+
+
+
+
+
 
 
 

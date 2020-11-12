@@ -56,7 +56,7 @@ if (isset($_POST["submitted"]) && $_POST["submitted"])
 
 	else
 	{
-		$error = "The email/password combination was incorrect. Login failed.";
+		$error = "The username/password combination was incorrect. Login failed.";
 		$db->close();
 	}
 
