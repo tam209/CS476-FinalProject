@@ -124,8 +124,101 @@ if (isset($_POST["submitted"]) && $_POST["submitted"]) {
 		}
 	}
 	
+	$birthFormat = date("Y-m-d", strtotime($birth));
+
+	//design pattern implementation
+	abstract class UserPrototype {
+		protected $UserFirst;
+		protected $UserLast;
+		protected $UserEmail;
+		protected $UserUsername;
+		protected $UserPassword;
+		protected $UserDOB;
+		protected $UserImage;
+		protected $UserType;
+
+		abstract function __clone();
+
+		function getUserFirst() {
+			return $this->UserFirst;
+		}
+
+		function setUserFirst($UserFirstIn) {
+			$this->UserFirst = $UserFirstIn;
+		}
+
+		function getUserLast() {
+			return $this->UserLast;
+		}
+
+		function setUserLast($UserLastIn) {
+			$this->UserLast = $UserLastIn;
+		}
+
+		function getUserEmail() {
+			return $this->UserEmail;
+		}
+
+		function setUserEmail($UserEmailIn) {
+			$this->UserEmail = $UserEmailIn;
+		}
+
+		function getUserUsername() {
+			return $this->UserUsername;
+		}
+
+		function setUserUsername($UserUsernameIn) {
+			$this->UserUsername = $UserUsernameIn;
+		}
+
+		function getUserPassword() {
+			return $this->UserPassword;
+		}
+
+		function setUserPassword($UserPasswordIn) {
+			$this->UserPassword = $UserPasswordIn;
+		}
+
+		function getUserDOB() {
+			return $this->UserDOB;
+		}
+
+		function setUserDOB($UserDOBIn) {
+			$this->UserDOB = $UserDOBIn;
+		}
+
+		function getUserImage() {
+			return $this->UserImag;
+		}
+
+		function setUserImage($UserImageIn) {
+			$this->UserImage = $UserImageIn;
+		}
+
+		function getUserType() {
+			return $this->UserType;
+		}
+	}
+
+	class RegisterUser extends UserPrototype {
+		function __construct() {
+			$this->UserType = 'Registered User';
+		}
+
+		function __clone() {
+		}
+	}
+
+	$NewUser = new RegisterUser();
+	$User = clone $NewUser;
+	$User->setUserFirst($fName);
+	$User->setUserLast($lName);
+	$User->setUserEmail($email);
+	$User->setUserPassword($password);
+	$User->setUserDOB($birthFormat);
+	$User->setUserImage($target_file);
+	
 	if ($validate == 1) {
-		$birthFormat = date("Y-m-d", strtotime($birth));
 		$q_insert = "INSERT INTO Users (first_name, last_name, email, username, password, dob, pic) VALUES ('$fName', '$lName', '$email','$username', '$password', '$birthFormat', '$target_file')";
 		$r_insert = $db->query($q_insert);
 		
