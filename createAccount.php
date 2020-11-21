@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require 'factory.php';
+
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -66,11 +68,10 @@ if (isset($_POST["submitted"]) && $_POST["submitted"]) {
 	$password = trim($_POST["re-pwd"]);
 	// Check if image file is a actual image or fake image
 	
-	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
-	if ($db->connect_error) {
-		die("Connection failed: " . $db->connect_error);
-	}
-	
+	// Implement the DB factory method
+	$factory = DBFactory::makeDB("localhost", "ADD MySQL Database Here", "Add MySQL Password Here", "ADD MySQL Username Here");
+	$db = $factory->connect();
+
 	//Check if email address is already taken
 	$q1 = "SELECT * FROM Users WHERE email = '$email';";
 	$r1 = $db->query($q1);
@@ -188,7 +189,7 @@ if (isset($_POST["submitted"]) && $_POST["submitted"]) {
 		}
 
 		function getUserImage() {
-			return $this->UserImag;
+			return $this->UserImage;
 		}
 
 		function setUserImage($UserImageIn) {
