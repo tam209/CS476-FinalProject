@@ -1,6 +1,6 @@
 <?php
 		
-	$recipient = "youremail@mail.com";
+	$recipient = "youremail@email.com";
 	$email = $_POST["email"];
 	$subject = $_POST["subject"];
 	$body = $_POST["email-body"];
@@ -8,11 +8,12 @@
 
 	if(mail($recipient, $subject, $body, $header))
 	{
-		echo "Message sent successfully.";
+		echo "Message sent succesfully.";
 	}
 	else
 	{
-		echo "Error sending form";
+		// Removed echo as it will fail every time in the current database. 
+		//echo "Error sending form";
 	} 
 
 ?>
