@@ -1,38 +1,34 @@
 <?php
 session_start();
 
+require 'factory.php';
+
 // Check if the session variable is still set, otherwise print error message
 if (isset($_SESSION["username"]))
 {
 	$username = $_SESSION["username"];
 	$validate = false;
-	
-	// Open a new connection to mysql database and check that it connected properly 
-	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
-	if ($db->connect_error)
-	{
-		die ("Connection failed: " . $db->connect_error);
-	}
-	
-	// Retrive the logged in user's first name, last name, and email from database
-	$q1 = "SELECT user_id, first_name, last_name, email, pic FROM Users WHERE username = '$username'";
-	$r1 = $db->query($q1);
-	$row = $r1->fetch_assoc();
-	
-	// Store the users information in variables
-	$user_id = $row["user_id"];
-	$fname = $row["first_name"];
-	$lname = $row["last_name"];
-	$email = $row["email"];
-	$avatar = $row["pic"];
+
+	// Implement the DB factory method
+	$factory = DBFactory::makeDB("localhost", "ADD MySQL Database Here", "Add MySQL Password Here", "ADD MySQL Username Here");
+	$db = $factory->connect();
+
+	//Implement the User factory method
+	$row = UserFactory::build($db);
+
+	$user_id = $row->getId();
+    $fname = $row->getFirst();
+    $lname = $row->getLast();
+    $email = $row->getEmail();
+    $avatar = $row->getAvatar();
 
 	// Retrieve user's saved books
 	$q2 = "SELECT Books.book_id, Books.title, Books.author, Books.pic 
-			FROM Books RIGHT JOIN SavedBooks ON Books.book_id = SavedBooks.book_id
-			LEFT JOIN Users ON SavedBooks.user_id = Users.user_id
-			WHERE Users.user_id = '$user_id'
-			ORDER BY Books.title ASC";
-	$r2 = $db->query($q2);
+		FROM Books RIGHT JOIN SavedBooks ON Books.book_id = SavedBooks.book_id
+		LEFT JOIN Users ON SavedBooks.user_id = Users.user_id
+		WHERE Users.user_id = '$user_id'
+		ORDER BY Books.title ASC";
+	$r2 = $db->query($q2);	
 
 	// get all the book_id's and check if one of them was pressed
 	$q3 = "Select book_id FROM SavedBooks WHERE user_id = '$user_id'";
@@ -50,12 +46,15 @@ if (isset($_SESSION["username"]))
 	}
 	$r3 -> free_result();
 	
+	
 	if($validate == true)
 	{
 		header("Location: profile.php");
 		exit();
 	}
+	
 	$db->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -113,6 +112,7 @@ if (isset($_SESSION["username"]))
 			echo "</div>";
 		}
 		$r2 -> free_result();
+		
 		?>
 
 	</div> 
