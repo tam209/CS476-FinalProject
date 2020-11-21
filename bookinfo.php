@@ -1,5 +1,7 @@
 <?php
 session_start();
+require 'factory.php';
+
 // if the user is logged in, get the book id passed over the URL and show save option
 if(isset($_SESSION["username"]) &&isset($_GET['id']))
 {
@@ -10,30 +12,25 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 	//create a variable to store the Save button display
 	$button = "Save";
 
-	// Open a new connection to mysql database and check that it connected properly 
-	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
-	if ($db->connect_error)
-	{
-		die ("Connection failed: " . $db->connect_error);
-	}
+	// Implement the DB factory method
+	$factory = DBFactory::makeDB("localhost", "ADD MySQL Database Here", "Add MySQL Password Here", "ADD MySQL Username Here");
+	$db = $factory->connect();
 	
 	// Retrive the current book's information from the database
-	$q1 = "SELECT title, author, genre, pic, link FROM Books WHERE book_id = '$book_id'";
-	$r1 = $db->query($q1);
-	$row = $r1->fetch_assoc();
-	
+	//Implement the Book factory method
+	$row = BookFactory::build($db);
+		
 	// Store the book's information in variables
-	$title = $row["title"];
-	$author = $row["author"];
-	$genre = $row["genre"];
-	$pic = $row["pic"];
-	$link = $row["link"];
+	$title = $row->getTitle();
+	$author = $row->getAuthor();
+	$genre = $row->getGenre();
+	$pic = $row->getPic();
+	$link = $row->getLink();
 	
 	// get the current user's id to store in SavedBooks table
-	$q2 = "SELECT user_id FROM Users WHERE username = '$username'";
-	$r2 = $db->query($q2);
-	$row = $r2->fetch_assoc();		
-	$user_id = $row["user_id"];
+	//Implement the User factory method
+	$row = UserFactory::build($db);
+	$user_id = $row->getId();
 
 	// check if the user has already saved this book
 	$q3 = "SELECT * FROM SavedBooks WHERE (book_id = '$book_id') AND (user_id = '$user_id')";
@@ -125,7 +122,7 @@ else if(isset($_GET['id']))
 	$book_id = $_GET['id'];
 
 	// Open a new connection to mysql database and check that it connected properly 
-	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
+	$db = new mysqli("localhost", "tls665", "Patch19", "tls665");	
 	if ($db->connect_error)
 	{
 		die ("Connection failed: " . $db->connect_error);
