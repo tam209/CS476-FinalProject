@@ -1,13 +1,25 @@
 <?php
 session_start();
 
-/* User object is created by the UserFactory */
+/* 
+User object executes query to retrieve user information.
+The user information is stored in an associative array 'row'.
+*/
 class User {
 	protected $row;
+	protected $db;
 	
-	public function __construct($row) 
+	public function __construct($db) 
 	{
-		$this->row = $row;
+		$this->db = $db;
+	}
+	public function setUser()
+	{
+		$username = $_SESSION["username"];
+		// MySQL query for user information
+		$q1 = "SELECT user_id, first_name, last_name, email, pic FROM Users WHERE username = '$username'";
+		$r1 = $this->db->query($q1);
+		$this->row = $r1->fetch_assoc();
 	}
 	public function getId() 
 	{
@@ -31,13 +43,25 @@ class User {
 	}	
 }
 
-/* Book object is created by the BookFactory */
+/* 
+Book object executes query to retrieve book information.
+The book information is stored in an associative array 'row'.
+ */
 class Book {
 	protected $row;
+	protected $db;
 	
-	public function __construct($row) 
+	public function __construct($db) 
 	{
-		$this->row = $row;
+		$this->db = $db;
+	}
+	public function setBook()
+	{
+		$book_id = $_GET['id'];
+		// MySQL query for book information
+		$q1 = "SELECT title, author, genre, pic, link FROM Books WHERE book_id = '$book_id'";
+		$r1 = $this->db->query($q1);
+		$this->row = $r1->fetch_assoc();
 	}
 	public function getTitle() 
 	{
@@ -62,36 +86,22 @@ class Book {
 }
 
 /* 
-User Factory creates executes the query for retrieving user information. It stores the information
-in the User object.
+User Factory creates the User object.
 */
 class UserFactory {
 	public function build($db)
 	{	
-		$username = $_SESSION["username"];
-		// MySQL query for user information
-		$q1 = "SELECT user_id, first_name, last_name, email, pic FROM Users WHERE username = '$username'";
-		$r1 = $db->query($q1);
-		$row = $r1->fetch_assoc();
-
-		return new User($row);
+		return new User($db);
 	}
 }
 
 /* 
-Book Factory extends the User Factory, and executes the query for retrieving user information. 
-It stores the information in the Book object.
+Book Factory extends the User Factory and creates the Book object.
 */
 class BookFactory extends UserFactory {
 	public function build($db)
 	{	
-		$book_id = $_GET['id'];
-		// MySQL query for book information
-		$q1 = "SELECT title, author, genre, pic, link FROM Books WHERE book_id = '$book_id'";
-		$r1 = $db->query($q1);
-		$row = $r1->fetch_assoc();
-
-		return new Book($row);
+		return new Book($db);
 	}
 }
 
