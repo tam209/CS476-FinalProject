@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'factory.php';
 
 $validate = true;
 $reg_Uname = "/^(\S*)[a-zA-Z0-9]+(\S*)$/";
@@ -13,11 +14,9 @@ if (isset($_POST["submitted"]) && $_POST["submitted"])
 	$username = trim($_POST["username"]);
 	$password = trim($_POST["pwd"]);
 
-	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
-	if ($db->connect_error)
-	{
-		die ("Connection failed: " . $db->connect_error);
-	}
+	// Implement the DB factory method
+	$factory = DBFactory::makeDB("localhost", "ADD MySQL Database Here", "Add MySQL Password Here", "ADD MySQL Username Here");
+	$db = $factory->connect();
 
 	$q = "SELECT * FROM Users WHERE username = '$username' AND password = '$password'";
 
@@ -56,8 +55,7 @@ if (isset($_POST["submitted"]) && $_POST["submitted"])
 
 	else
 	{
-		$error = "The username/password combination was incorrect. Login failed.";
-		$db->close();
+		$error = "The username/password combination was incorrect. Login failed.";		$db->close();
 	}
 
 }
