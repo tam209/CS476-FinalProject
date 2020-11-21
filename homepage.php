@@ -1,16 +1,14 @@
 <?php
 session_start();
+require 'factory.php';
 
 if (isset($_GET["submitted"]) && $_GET["submitted"])	
 {
 	$search = $_GET["search"];
 	
-	// Open a new connection to mysql database and check that it connected properly 
-	$db = new mysqli("localhost", "ADD MySQL Database name here", "ADD MySQL Password here", "ADD MySQL Username here");
-	if ($db->connect_error)
-	{
-		die ("Connection failed: " . $db->connect_error);
-	}
+	// Implement the DB factory method
+	$factory = DBFactory::makeDB("localhost", "ADD MySQL Database Here", "Add MySQL Password Here", "ADD MySQL Username Here");
+	$db = $factory->connect();
 
 	// Retrive the book's book_id, title, author, and picture from the database based on the search
 	$q = "SELECT book_id, title, author, pic FROM Books WHERE (title LIKE '%$search%') OR (author LIKE '%$search%') OR (genre LIKE '%$search%') ORDER BY title ASC";
@@ -25,10 +23,9 @@ if (isset($_GET["submitted"]) && $_GET["submitted"])
 <html>
 <head>
 	<title>BookExplorer: Search & Save Books</title>
-	<link rel="stylesheet" type="text/css" href="WebApp.css" />
+	<link rel="stylesheet" type="text/css" href="WebApp.css?v=14" />
 
 	<meta charset="UTF-8">
-
 </head>
 
 <body>
