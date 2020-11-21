@@ -18,19 +18,23 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 	
 	// Retrive the current book's information from the database
 	//Implement the Book factory method
-	$row = BookFactory::build($db);
+	$book = BookFactory::build($db);
+	$book->setBook();
 		
 	// Store the book's information in variables
-	$title = $row->getTitle();
-	$author = $row->getAuthor();
-	$genre = $row->getGenre();
-	$pic = $row->getPic();
-	$link = $row->getLink();
+	$title = $book->getTitle();
+	$author = $book->getAuthor();
+	$genre = $book->getGenre();
+	$pic = $book->getPic();
+	$link = $book->getLink();
 	
 	// get the current user's id to store in SavedBooks table
 	//Implement the User factory method
-	$row = UserFactory::build($db);
-	$user_id = $row->getId();
+	$user = UserFactory::build($db);
+	$user->setUser();
+	
+	// get the user_id from factory method
+	$user_id = $user->getId();
 
 	// check if the user has already saved this book
 	$q3 = "SELECT * FROM SavedBooks WHERE (book_id = '$book_id') AND (user_id = '$user_id')";
