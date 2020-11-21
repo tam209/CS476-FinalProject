@@ -188,7 +188,7 @@ if (isset($_POST["submitted"]) && $_POST["submitted"]) {
 		}
 
 		function getUserImage() {
-			return $this->UserImag;
+			return $this->UserImage;
 		}
 
 		function setUserImage($UserImageIn) {
