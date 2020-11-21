@@ -14,13 +14,14 @@ if (isset($_SESSION["username"]))
 	$db = $factory->connect();
 
 	//Implement the User factory method
-	$row = UserFactory::build($db);
+	$user = UserFactory::build($db);
+	$user->setUser();
 
-	$user_id = $row->getId();
-    $fname = $row->getFirst();
-    $lname = $row->getLast();
-    $email = $row->getEmail();
-    $avatar = $row->getAvatar();
+	$user_id = $user->getId();
+	$fname = $user->getFirst();
+	$lname = $user->getLast();
+	$email = $user->getEmail();
+	$avatar = $user->getAvatar();
 
 	// Retrieve user's saved books
 	$q2 = "SELECT Books.book_id, Books.title, Books.author, Books.pic 
