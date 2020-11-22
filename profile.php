@@ -14,8 +14,9 @@ if (isset($_SESSION["username"]))
 	$db = $factory->connect();
 
 	//Implement the User factory method
-	$user = UserFactory::build($db);
+	$user = QueryFactory::build($db, "User");
 	$user->setUser();
+
 
 	$user_id = $user->getId();
 	$fname = $user->getFirst();
