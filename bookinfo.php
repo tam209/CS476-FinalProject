@@ -18,7 +18,7 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 	
 	// Retrive the current book's information from the database
 	//Implement the Book factory method
-	$book = BookFactory::build($db);
+	$book = QueryFactory::build($db, "Book");
 	$book->setBook();
 		
 	// Store the book's information in variables
@@ -30,7 +30,7 @@ if(isset($_SESSION["username"]) &&isset($_GET['id']))
 	
 	// get the current user's id to store in SavedBooks table
 	//Implement the User factory method
-	$user = UserFactory::build($db);
+	$user = QueryFactory::build($db, "User");
 	$user->setUser();
 	
 	// get the user_id from factory method
