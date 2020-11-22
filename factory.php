@@ -88,20 +88,10 @@ class Book {
 /* 
 User Factory creates the User object.
 */
-class UserFactory {
-	public function build($db)
-	{	
-		return new User($db);
-	}
-}
-
-/* 
-Book Factory extends the User Factory and creates the Book object.
-*/
-class BookFactory extends UserFactory {
-	public function build($db)
-	{	
-		return new Book($db);
+class QueryFactory {
+	public function build($db, $class)
+	{
+		return new $class($db);
 	}
 }
 
