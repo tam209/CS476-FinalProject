@@ -1,8 +1,5 @@
 # CS476-FinalProject: BookExplorer
 ### GitHub repository for CS 476 final software project.
-
-<br/>
-
 ### Authors:
 Kristen Tam and Tori Sambrook
 
